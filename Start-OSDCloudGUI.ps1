@@ -1,5 +1,9 @@
 try {
     Start-OSDCloudGUI
+    Write-Host "HERE?"
+    Write-Host "HERE?"
+    Write-Host "HERE?"
+    Write-Host "HERE?"
 } catch {
     throw "$($_.Exception.Message)"
 }
