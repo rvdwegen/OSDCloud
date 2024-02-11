@@ -10,7 +10,7 @@ ProcessClose pid
 
 Run("powershell -NoExit -ExecutionPolicy Bypass -Command irm https://u.vdwegen.app/postOOBE | iex")
 
-WinWait "Autopilot Hash Bootstrap"
+WinWait "Post OOBE Bootstrap"
     WinActivate
 
 ExitApp
