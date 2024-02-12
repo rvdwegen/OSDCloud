@@ -1,9 +1,5 @@
 $ProgressPreference = 'SilentlyContinue'
 $host.ui.RawUI.WindowTitle = "Post OOBE Bootstrap"
-[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-
-Invoke-RestMethod -Uri "https://raw.githubusercontent.com/rvdwegen/OSDCloud/main/PowerShellGetSettings.xml" -OutFile "$env:LOCALAPPDATA\Microsoft\Windows\PowerShell\PowerShellGet\PowerShellGetSettings.xml"
-Invoke-RestMethod -Uri "https://github.com/rvdwegen/OSDCloud/blob/main/PSRepositories.xml" -OutFile "$env:LOCALAPPDATA\Microsoft\Windows\PowerShell\PowerShellGet\PSRepositories.xml"
 
 try {
     # Change execution policy
@@ -12,6 +8,10 @@ try {
            Write-Host "adfdasdasdasdasdsd"
            Write-Host "Executionpolicy has been changed to unrestricted for this process" -ForegroundColor Green
     }
+
+    Invoke-RestMethod -Uri "https://github.com/mgajda83/PSWindowsUpdate/archive/refs/heads/main.zip" -OutFile "$env:TEMP\lol098.zip"
+    Expand-Archive -Path "$env:TEMP\lol098.zip" -DestinationPath "$env:TEMP\lol098"
+    "C:\temp\lol098\PSWindowsUpdate-main\PSWindowsUpdate\" | Get-ChildItem -include '*.psm1','*.ps1' | Import-Module
 
     # Install PackageProvider NuGet
     try {
@@ -22,21 +22,21 @@ try {
            throw "Failed to find/install NuGet: $($_.Exception.Message)"
     }
 
-    # Check & Install requisite modules
-    $installedModules = Get-InstalledModule
-    Write-Host "Checking modules..."
-    @('PSWindowsUpdate') | ForEach-Object {
-           try {
-                  if ($installedModules.Name -notcontains $($_)) {
-                         Install-Module -Name $($_) -Scope AllUsers -Force -Confirm:$FALSE
-                         Write-Host "Module $($_) has been installed" -ForegroundColor Green
-                  } else {
-                         Write-Host "Module $($_) has been found" -ForegroundColor Green
-                  }
-           } catch {
-                  throw "Failed to install/find module $($_): $($_.Exception.Message)"
-           }
-    }
+#     # Check & Install requisite modules
+#     $installedModules = Get-InstalledModule
+#     Write-Host "Checking modules..."
+#     @('PSWindowsUpdate') | ForEach-Object {
+#            try {
+#                   if ($installedModules.Name -notcontains $($_)) {
+#                          Install-Module -Name $($_) -Scope AllUsers -Force -Confirm:$FALSE
+#                          Write-Host "Module $($_) has been installed" -ForegroundColor Green
+#                   } else {
+#                          Write-Host "Module $($_) has been found" -ForegroundColor Green
+#                   }
+#            } catch {
+#                   throw "Failed to install/find module $($_): $($_.Exception.Message)"
+#            }
+#     }
 } catch {
     throw "$($_.Exception.Message)"
 }
