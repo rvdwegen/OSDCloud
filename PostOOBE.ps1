@@ -11,7 +11,7 @@ try {
 
     Invoke-RestMethod -Uri "https://github.com/mgajda83/PSWindowsUpdate/archive/refs/heads/main.zip" -OutFile "$env:TEMP\lol098.zip"
     Expand-Archive -Path "$env:TEMP\lol098.zip" -DestinationPath "$env:TEMP\lol098"
-    "C:\temp\lol098\PSWindowsUpdate-main\PSWindowsUpdate\" | Get-ChildItem -include '*.psm1','*.ps1' | Import-Module
+    "$env:TEMP\lol098\PSWindowsUpdate-main\PSWindowsUpdate\" | Get-ChildItem -include '*.psm1','*.ps1' | Import-Module
 
     # Install PackageProvider NuGet
     try {
