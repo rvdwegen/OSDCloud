@@ -28,7 +28,7 @@ try {
     @('PSWindowsUpdate') | ForEach-Object {
            try {
                   if ($installedModules.Name -notcontains $($_)) {
-                         Install-Module -Name $($_) -Force -Confirm:$FALSE
+                         Install-Module -Name $($_) -Scope AllUsers -Force -Confirm:$FALSE
                          Write-Host "Module $($_) has been installed" -ForegroundColor Green
                   } else {
                          Write-Host "Module $($_) has been found" -ForegroundColor Green
