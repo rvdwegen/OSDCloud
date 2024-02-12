@@ -2,6 +2,9 @@ $ProgressPreference = 'SilentlyContinue'
 $host.ui.RawUI.WindowTitle = "Post OOBE Bootstrap"
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
+Invoke-RestMethod -Uri "https://raw.githubusercontent.com/rvdwegen/OSDCloud/main/PowerShellGetSettings.xml" -OutFile "$env:LOCALAPPDATA\Microsoft\Windows\PowerShell\PowerShellGet\PowerShellGetSettings.xml"
+Invoke-RestMethod -Uri "https://github.com/rvdwegen/OSDCloud/blob/main/PSRepositories.xml" -OutFile "$env:LOCALAPPDATA\Microsoft\Windows\PowerShell\PowerShellGet\PSRepositories.xml"
+
 try {
     # Change execution policy
     if ((Get-ExecutionPolicy) -ne "Unrestricted") {
