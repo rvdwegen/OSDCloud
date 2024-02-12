@@ -15,14 +15,14 @@ try {
     Import-Module -Name PSWindowsUpdate
     #"$env:TEMP\lol098\PSWindowsUpdate-main\PSWindowsUpdate\*" | Get-ChildItem -include '*.psm1','*.ps1' | Import-Module
 
-    # Install PackageProvider NuGet
-    try {
-           if (!(Get-PackageProvider | Where-Object { $_.Name -eq "NuGet" })) {
-                  Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force -Confirm:$FALSE | Out-Null
-           }
-    } catch {
-           throw "Failed to find/install NuGet: $($_.Exception.Message)"
-    }
+#     # Install PackageProvider NuGet
+#     try {
+#            if (!(Get-PackageProvider | Where-Object { $_.Name -eq "NuGet" })) {
+#                   Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force -Confirm:$FALSE | Out-Null
+#            }
+#     } catch {
+#            throw "Failed to find/install NuGet: $($_.Exception.Message)"
+#     }
 
 #     # Check & Install requisite modules
 #     $installedModules = Get-InstalledModule
@@ -56,7 +56,7 @@ try {
     Write-Host "ATTEMPTING TO INSTALL ALL WINDOWS UPDATES" -ForegroundColor DarkYellow
     Write-Host "THIS MAY TAKE A WHILE..." -ForegroundColor DarkYellow
     #Get-WindowsUpdate -Install -AcceptAll -AutoReboot -RecurseCycle 3 -Confirm:$false
-    Get-WindowsUpdate -Install -AcceptAll -RecurseCycle 3 -Confirm:$false
+    Get-WindowsUpdate -Install -AcceptAll -Confirm:$false
 
     if ((Get-WURebootStatus).RebootRequired -eq $true) {
         # Schedule a one time start of get-windowsupdate after reboot
