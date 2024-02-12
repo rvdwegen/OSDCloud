@@ -10,7 +10,7 @@ try {
     }
 
     [uri]$url = "https://github.com/mgajda83/PSWindowsUpdate/archive/refs/heads/main.zip"
-    Invoke-RestMethod -Uri "https://github.com/mgajda83/PSWindowsUpdate/archive/refs/heads/main.zip" -OutFile "$env:TEMP\$($url.Segments[2].Trim('/')).zip"
+    Invoke-RestMethod -Uri $url.AbsoluteUri -OutFile "$env:TEMP\$($url.Segments[2].Trim('/')).zip"
     Expand-Archive -Path "$env:TEMP\$($url.Segments[2].Trim('/')).zip" -DestinationPath "$env:PROGRAMFILES\WindowsPowerShell\Modules\$($url.Segments[2].Trim('/'))" -Force
     C:\Program Files\WindowsPowerShell\Modules
     "$env:TEMP\lol098\PSWindowsUpdate-main\PSWindowsUpdate\*" | Get-ChildItem -include '*.psm1','*.ps1' | Import-Module
