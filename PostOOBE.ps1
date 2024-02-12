@@ -1,3 +1,6 @@
+$ProgressPreference = 'SilentlyContinue'
+$host.ui.RawUI.WindowTitle = "Post OOBE Bootstrap"
+
 try {
     # Change execution policy
     if ((Get-ExecutionPolicy) -ne "Unrestricted") {
