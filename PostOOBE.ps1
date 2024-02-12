@@ -1,5 +1,6 @@
 $ProgressPreference = 'SilentlyContinue'
 $host.ui.RawUI.WindowTitle = "Post OOBE Bootstrap"
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
 try {
     # Change execution policy
