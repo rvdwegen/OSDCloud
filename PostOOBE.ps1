@@ -46,7 +46,7 @@ try {
  try {
      $serialNumber = (Get-CimInstance -ClassName Win32_BIOS).SerialNumber
     if (-not $serialNumber.StartsWith($env:COMPUTERNAME)) {
-        Rename-Computer -NewName $serialNumber
+        Rename-Computer -NewName $serialNumber -Force
     }
  } catch {
     throw "$($_.Exception.Message)"
