@@ -43,14 +43,14 @@ try {
     throw "$($_.Exception.Message)"
 }
 
-# try {
-#     $serialNumber = (Get-WmiObject Win32_bios).SerialNumber
-#     if ($env:COMPUTERNAME -ne $serialNumber) {
-#         $serialNumber | Rename-Computer
-#     }
-# } catch {
-#    throw "$($_.Exception.Message)"
-# }
+ try {
+     $serialNumber = (Get-CimInstance -ClassName Win32_BIOS).SerialNumber
+    if (-not $serialNumber.StartsWith($env:COMPUTERNAME)) {
+        Rename-Computer -NewName $serialNumber
+    }
+ } catch {
+    throw "$($_.Exception.Message)"
+ }
 
 try {
     Write-Host "ATTEMPTING TO INSTALL ALL WINDOWS UPDATES" -ForegroundColor DarkYellow
