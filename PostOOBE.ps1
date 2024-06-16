@@ -56,7 +56,7 @@ try {
     Write-Host "ATTEMPTING TO INSTALL ALL WINDOWS UPDATES" -ForegroundColor DarkYellow
     Write-Host "THIS MAY TAKE A WHILE..." -ForegroundColor DarkYellow
     #Get-WindowsUpdate -Install -AcceptAll -AutoReboot -RecurseCycle 3 -Confirm:$false
-    Get-WindowsUpdate -Install -AcceptAll -Confirm:$false
+    Get-WindowsUpdate -Install -AcceptAll -Confirm:$false -IgnoreReboot
     #Install-WindowsUpdate -UpdateType Driver -AcceptAll -IgnoreReboot
 
     if ((Get-WURebootStatus).RebootRequired -eq $true) {
