@@ -59,7 +59,7 @@ try {
     Get-WindowsUpdate -Install -AcceptAll -Confirm:$false -IgnoreReboot
     #Install-WindowsUpdate -UpdateType Driver -AcceptAll -IgnoreReboot
 
-    if ((Get-WURebootStatus).RebootRequired -eq $true) {
+    if ((Get-WURebootStatus -Silent) -eq $true) {
         # Schedule a one time start of get-windowsupdate after reboot
         Write-Host "Reboot logic here"
     } else {
