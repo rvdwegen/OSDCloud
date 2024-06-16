@@ -57,6 +57,7 @@ try {
     Write-Host "THIS MAY TAKE A WHILE..." -ForegroundColor DarkYellow
     #Get-WindowsUpdate -Install -AcceptAll -AutoReboot -RecurseCycle 3 -Confirm:$false
     Get-WindowsUpdate -Install -AcceptAll -Confirm:$false
+    #Install-WindowsUpdate -UpdateType Driver -AcceptAll -IgnoreReboot
 
     if ((Get-WURebootStatus).RebootRequired -eq $true) {
         # Schedule a one time start of get-windowsupdate after reboot
