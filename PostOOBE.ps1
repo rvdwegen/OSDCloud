@@ -58,13 +58,9 @@ try {
     #Get-WindowsUpdate -Install -AcceptAll -AutoReboot -RecurseCycle 3 -Confirm:$false
     Get-WindowsUpdate -Install -AcceptAll -Confirm:$false -IgnoreReboot
     #Install-WindowsUpdate -UpdateType Driver -AcceptAll -IgnoreReboot
-
-    if ((Get-WURebootStatus -Silent) -eq $true) {
-        # Schedule a one time start of get-windowsupdate after reboot
-        Write-Host "Reboot logic here"
-    } else {
-        Write-Host "UPDATES COMPLETED, WINDOWS SHOULD BE FULLY UP TO DATE" -ForegroundColor Green
-    }
+    Write-Host "UPDATES COMPLETED, WINDOWS SHOULD BE FULLY UP TO DATE" -ForegroundColor Green
+    Write-Host "PRESS ANY KEY TO CONTINUE..."
+    Pause
 } catch {
     throw "$($_.Exception.Message)"
 }
